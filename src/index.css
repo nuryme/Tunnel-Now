@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+/* ── Locked design system: 60-30-10 ─────────────────────────────── */
+@theme {
+  --color-bg: #161b22;          /* 60% dominant — Slate Charcoal */
+  --color-surface: #1c232e;     /* elevated panels */
+  --color-surface-2: #222a35;   /* cards on cards */
+  --color-border: #2a313c;
+  --color-titanium: #f0f4f8;    /* 30% — primary type */
+  --color-ash: #8b949e;         /* 30% — secondary type */
+  --color-gold: #e3a824;        /* 10% — accent / CTA only */
+  --color-gold-bright: #f2b938;
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ── Base ───────────────────────────────────────────────────────── */
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-titanium);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--color-gold); color: #161b22; }
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+h1, h2, h3, h4 { font-family: var(--font-display); }
+
+/* ── Layout helpers ─────────────────────────────────────────────── */
+.shell { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: 1.5rem; }
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  font-weight: 500;
+}
+
+/* ── Buttons ────────────────────────────────────────────────────── */
+.btn-gold {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-display); font-weight: 600;
+  background: var(--color-gold); color: #14181f;
+  padding: 1rem 1.75rem; border-radius: 0.6rem;
+  letter-spacing: 0.01em;
+  box-shadow: 0 0 0 0 rgba(227,168,36,0.45);
+  transition: transform .18s ease, box-shadow .25s ease, background .18s ease;
+}
+.btn-gold:hover {
+  background: var(--color-gold-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -8px rgba(227,168,36,0.55);
+}
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-display); font-weight: 500;
+  color: var(--color-titanium);
+  padding: 1rem 1.5rem; border-radius: 0.6rem;
+  border: 1px solid var(--color-border);
+  transition: border-color .2s ease, color .2s ease;
+}
+.btn-ghost:hover { border-color: var(--color-gold); color: var(--color-gold); }
+
+/* ── Cards ──────────────────────────────────────────────────────── */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.9rem;
+  transition: border-color .25s ease, transform .25s ease, background .25s ease;
+}
+.card:hover { border-color: rgba(227,168,36,0.4); transform: translateY(-4px); }
+
+/* ── Scroll reveal ──────────────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+  .tunnel-dash { animation: none !important; }
+  .leak-pulse { animation: none !important; }
+}
+
+/* ── Hero SVG animation ─────────────────────────────────────────── */
+.tunnel-dash {
+  stroke-dasharray: 10 8;
+  animation: flow 1.4s linear infinite;
+}
+@keyframes flow { to { stroke-dashoffset: -36; } }
+
+.leak-pulse { transform-origin: center; animation: pulse 1.8s ease-in-out infinite; }
+@keyframes pulse {
+  0%, 100% { opacity: 0.35; r: 4; }
+  50% { opacity: 1; r: 7; }
+}
