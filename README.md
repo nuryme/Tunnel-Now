@@ -13,7 +13,7 @@ Tunnel Now is a premium landing page built for a specialized plumbing and under-
 
 ## 🛠️ Tech Stack
 
-- **Framework:** Next.js / React (Deployed on Vercel)
+- **Framework:** React (Deployed on Vercel)
 - **Styling:** Tailwind CSS (or equivalent utility-first modern CSS framework)
 - **Icons & Assets:** Custom vector/SVG iconography representing structural and plumbing states.
 
